@@ -40,3 +40,6 @@ make install
    export LD_LIBRARY_PATH=/usr/local/apr/lib
    source /etc/profile
    </pre>
+
+所有的下载都在 http://pan.baidu.com/s/1ccADjC
+提取码：4kt7
