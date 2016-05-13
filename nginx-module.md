@@ -5,7 +5,6 @@
  <pre>cd <path to nginx sources></pre>
  <pre>./configure --add-module=<path to module sources></pre>
  <pre>make & make install</pre>
-
 这样的话模块就被编到Nginx/Tengine中，可以直接使用
 
 2. Tengine有DSO动态模块加载机制，并提供一个叫dso_tool的工具把模块编译成动态模块
