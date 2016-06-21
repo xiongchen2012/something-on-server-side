@@ -1,11 +1,11 @@
 
-#### 服务器环境配置
+#### Native Tomcat with APR
 1. 上传必须的库到服务器
  <pre>scp /path/to/libssl1.0.0_1.0.2g-1ubuntu1_amd64.deb user@host:/home/user</pre>
  <pre>scp /path/to/openssl_1.0.2g-1ubuntu1_amd64.deb user@host:/home/user</pre>
  <pre>scp /path/to/libssl-dev_1.0.2g-1ubuntu1_amd64.deb user@host:/home/user</pre>
 
-2. 安装ＴＯＭＣＡＴ并配置ＡＰＲ连接器
+2. 安装TOMCAT并配置APR连接器
 <pre>安装APR：
 scp /path/to/apr-1.5.2.tar.gz user@host:/home/user
 tar zxvf apr-1.5.2.tar.gz
