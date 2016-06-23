@@ -1,5 +1,5 @@
 
-#### Native Tomcat with APR
+#### Tomcat Native with APR
 1. 上传必须的库到服务器
  <pre>scp /path/to/libssl1.0.0_1.0.2g-1ubuntu1_amd64.deb user@host:/home/user</pre>
  <pre>scp /path/to/openssl_1.0.2g-1ubuntu1_amd64.deb user@host:/home/user</pre>
@@ -40,6 +40,15 @@ make install
    export LD_LIBRARY_PATH=/usr/local/apr/lib
    source /etc/profile
    </pre>
+
+4. 启动TOMCAT
+   如果以前都配置成功的话，启动时出现以下日志：
+   <pre>
+    Loaded APR based Apache Tomcat Native library 1.2.5 using APR   version 1.5.2.
+    APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+    OpenSSL successfully initialized (OpenSSL 1.0.2g-fips  1 Mar 2016)
+   </pre>
+   以此来确认是否正确编译
 
 所有的下载都在 http://pan.baidu.com/s/1ccADjC
 提取码：4kt7
