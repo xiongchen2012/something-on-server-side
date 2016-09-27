@@ -2,7 +2,7 @@
 
 1. Nginx/Tengine 静态编译模块
  下载模块代码，然后解压：
- <pre>cd /path/to/nginx_sources></pre>
+ <pre>cd /path/to/nginx_sources</pre>
  <pre>./configure --add-module=/path/to/module_sources</pre>
  <pre>make & make install</pre>
 这样的话模块就被编到Nginx/Tengine中，可以直接使用
