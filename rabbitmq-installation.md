@@ -24,4 +24,5 @@
 * 访问地址：
  http://server-name:15672/
 
-
+## CentOS下（无网络环境的服务器）可以先到下列地址下载ERLANG的安装包
+ http://www.rabbitmq.com/releases/erlang/
