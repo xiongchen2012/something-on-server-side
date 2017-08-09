@@ -6,3 +6,6 @@ https://github.com/xiongchen2012/something-on-server-side/blob/master/tomcat-wit
 
 ### RabbitMQ 安装（Ubuntu）
 https://github.com/xiongchen2012/something-on-server-side/blob/master/rabbitmq-installation.md
+
+### Oracle表空间扩容
+https://github.com/xiongchen2012/something-on-server-side/blob/master/oracle-tablespace-extend.md
