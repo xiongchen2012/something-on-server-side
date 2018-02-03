@@ -3,6 +3,7 @@
 H5开始引入了[Application Cache](https://html.spec.whatwg.org/#applicationcache "Application Cache")技术，可以在客户端缓存服务器上的HTML页面。基于AppCache可以实现网站的离线访问。
 
 Application Cache的引入，带来几个好处：  
+
 1. 离线访问
 2. 由于缓存了页面，访问速度快
 3. 减少服务端负载
@@ -43,3 +44,32 @@ Application Cache是通过浏览器下载服务器上的manifest清单文件，�
    </mime-mapping>
   ```
 
+### 缓存清单文件
+1. 在HTML页面的`<html>`增加manifest属性。
+
+``` html
+<html manifest='example.appcache'>
+  ...
+</html>
+```
+
+每个指定了 manifest 的页面在用户对其访问时都会被缓存。如果未指定 manifest 属性，则页面不会被缓存（除非在 manifest 文件中直接指定了该页面）。
+
+标注了此属性的HTML文件，可以作为主记录文件，作为application cache的入口（entry）
+
+2. 缓存清单文件（建议扩展名为.appcache）
+
+manifest文件告知浏览器被缓存的内容（以及不缓存的内容），有三个小节：
+- ACHE MANIFEST：列出的文件将在首次下载后进行缓存
+- NETWORK：列出的文件需要与服务器的连接，并且不缓存
+- FALLBACK：列出的文件规定当页面无法访问时的备胎页面（比如 404）
+
+因为AppCache已经不再是Web标准，所以介绍的比较简单。
+
+总结一下吧：
+- 随便找一个HTML文件当成入口主记录文件，比如index.html。在index.html的`<html>`加上manifest属性，值指向服务器上的缓存清单文件。
+- 缓存清单文件中把要缓存的所有文件在CACHE小节中全列出来。
+- 不把需要缓存的文件在NETWORK小节中全列出来。
+- 最后再指定一定备胎页面（类似404页面）应急。
+
+（TODO：以后有空再写一下ServiceWorker相关的博客）
