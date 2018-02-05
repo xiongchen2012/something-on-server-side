@@ -45,3 +45,32 @@ If-Modified-Since: Sat, 2 Feb 2018 18:39:13 GMT
 服务器收到请后，发现这段时间内没有再修改该资源，就返回状态码[304（Not Modified）](https://httpstatuses.com/304 "304")，请示我没有修改过该资源，浏览器你可以使用你的本地缓存。
 
 ### ETag / If-None-Match
+
+HTTP协议对Etag的定义是：[RFC](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19)
+> The ETag response-header field provides the current value of the entity tag for the requested variant
+
+翻译再加工一下：ETag是客户端所请求的资源的实体的Tag值。所谓实体应该指的是请求URL对应的资源实体（比如1张图片，1个js文件等），实体的Tag值应该指的是可以与实体对应的某个固定的值。（比如文件的MD5值，一旦实体变了，MD5值也必定会跟着变）
+
+我个人理解的ETag值：服务器为返回给客户端（浏览器）的资源实体打上的标签，是为了方便与客户端协商是否使用缓存的关键点。比如我给一个图片打了一个Etag值是d41d8c，第一次浏览器请求这个图片时将Etag存下来。第二次浏览器请求这个图片前，先把这个值（d41d8c）传给服务器，服务器比较传过来的这个Etag值和当前值是不是一致，如果一致就直接返回304。否则返200。这样浏览器就知道是放心使用本地缓存还是应该重新请求新的图片了。
+
+客户端发送Etag向服务端查询资源是否更新的过程，有个专门的术语，叫Conditional GET（带条件的GET请求），这是一个代价很小的HTTP请求。
+
+整个过程如下：
+
+1. 第一次浏览器向服务端请求资源，服务端在响应的`body`发送该资源,同时在`header`中附加该资源的`ETag值`<br/>
+2. 后面浏览器再用到该资源时，先向服务端发送ConditionalGET请求，在`header`中附件`If-None-Match`字段，该字段的值是第1步中的Etag值。<br/>
+3. 服务端检查Etag值，如果资源没有变化，直接返回`304`,同时响应的`body`置空；如果资源发生了变化，则在在响应的`body`发送该资源,同时在`header`中附加新的`ETag值`。<br/>
+
+### 总结：
+
+- 为了减轻服务器压力，尽量使用本地缓存，人们想了N多办法：<br/>
+  1.`Cache-Control`（请求前）<br/>
+  2.`Expires`（请求前）<br/>
+  3.`If-None-Match`、`Etag`（请求服务器）<br/>
+  4.`If-Modified-Since`、`Last-Modified`（请求服务器）<br/>
+
+- HTTP协议规定`Etag`、`Last-Modified`同时存在时，必须同时发送给服务器。
+
+- Ctrl + F5强制刷新时，以上规则都不生效。
+
+- 开发人员使用Chrome时，最好Disable Cache。
