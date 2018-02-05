@@ -71,6 +71,11 @@ HTTP协议对Etag的定义是：[RFC](https://www.w3.org/Protocols/rfc2616/rfc26
 
 - HTTP协议规定`Etag`、`Last-Modified`同时存在时，必须同时发送给服务器。
 
+- HTML中可以在`<head>`小节加入以下代码，告诉浏览器本页面不需要缓存，每次都要从服务器重新请求<br/>
+``` html
+    <META HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+```
+
 - Ctrl + F5强制刷新时，以上规则都不生效。
 
 - 开发人员使用Chrome时，最好Disable Cache。
